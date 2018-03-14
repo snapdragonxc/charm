@@ -1,0 +1,139 @@
+.shop {
+    margin-top: 20px;
+}
+/*  <--- LAYOUT --> */
+.shop .pagination {
+    margin-top: 50px;
+    width: 100%;
+}
+/* <--- LIST CONTAINER ---> */
+.shop-products-container {
+    list-style-type: none;
+}
+/* <--- LIST ITEM ---> */
+.shop-products-product {
+    float: none;
+    margin: 0 auto;
+}
+.shop-products-product h3 {
+    font-size: 14px;
+    font-weight: bold;
+    color: #303030;
+    line-height: 1.5;
+    text-transform: uppercase;
+    margin-bottom: 0;
+    margin-top: 5px;
+}
+.shop-products-product p {
+    font-size: 14px; 
+    font-weight: normal;
+    line-height: 1.5;
+    color: #303030;
+    margin-bottom: 1em;
+}
+.shop-products-product div {    
+}
+.shop-products-product img {
+    width: 100%;    
+    border: 1px solid rgba(168, 168, 168, 0.5);
+    filter: // brightness(110%);
+}
+.shop-products-product img:hover {
+    cursor: pointer;
+    filter: brightness(95%)
+}
+/* <--- RESPONSIVE LIST ITEM ---> */
+@media screen and (min-width: 770px) {
+    .shop-products-product {
+        float: left;
+    }
+ }
+/* <--- NAV MENU ---> */
+.shop-nav-divider {
+    width: 100%;
+    margin-top: 10px;
+    border-bottom: 1px solid rgba(168, 168, 168, 0.5)
+}
+.shop-nav-divider:last-child {
+    margin-bottom: 30px;
+}
+.shop-nav-filter-container {
+    list-style-type: none;
+    width: 100%;
+    list-style-type: none;
+    margin: 0 auto;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+.shop-nav-filter {
+    font-size: 14px;
+    font-weight: normal;
+    color: #303030;
+    line-height: 2.5;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    width: 100%;
+    border-bottom: 1px solid #f0f0f0;
+}
+.shop-nav-filter:last-child {
+    border: 0;
+}
+/* unvisited link */
+.shop-nav-filter a:link {
+    color: #000; /*#303030; */
+   
+}
+/* visited link */
+.shop-nav-filter a:visited {
+    color: #303030;
+    
+}
+/* mouse over link */
+.shop-nav-filter a:hover {
+    color: rgb(168, 168, 168);
+    cursor: pointer;
+}
+/* selected link */
+.shop-nav-filter a:active {
+    color: #111;
+}
+/* mouse over link */
+.shop-nav-filter span:hover {
+    color: rgb(168, 168, 168);
+    cursor: pointer;
+}
+.shop-nav-filter input {
+    float: right;
+    margin-top:  12px;
+    margin-right: 2px;
+}
+.shop-nav-filter input:hover {
+    cursor: pointer;
+}
+.shop-nav h2 {
+    font-size: 18px;
+    font-weight: normal;
+    color: #595959;
+    text-transform: uppercase;
+}
+.shop-nav-filter a {
+    text-transform: uppercase;
+}
+/* <--- RESPONSIVE NAV MENU ---> */
+@media screen and (min-width: 770px) {
+    .shop {
+        margin-top: 25px;//75px;
+    }
+    .shop-nav-filter-container {
+        width: 170px;
+        margin: 0;
+        margin-top: 20px;
+        margin-bottom: 20px;
+    }
+    .shop-nav-filter {
+        border: 0;
+    }
+    .shop-nav-divider {
+        width: 170px;
+    }
+ }

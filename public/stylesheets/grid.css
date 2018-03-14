@@ -1,0 +1,104 @@
+.clear { 
+    clear:both;
+}
+.pull-right {
+    float: right;
+}
+.pull-left {
+    float: left;
+}
+.container {
+    padding-right: 15px;
+    padding-left: 15px;
+    margin-right: auto;
+    margin-left: auto;
+}
+.row {
+    margin-right: -15px; /* trick from bootstrap for formatting nested */
+    margin-left: -15px;
+}
+.row:after {
+    content: ' ';
+    clear: both;
+    display: block;
+}
+[class*="col-span"] {
+    float: left;
+    box-sizing: border-box;
+    padding-left: 15px;
+    padding-right: 15px;
+}
+.sm-col-span-1 {
+        width: 8.33%;
+    }
+.sm-col-span-2 {
+    width: 16.66%;
+}
+.sm-col-span-3 {
+    width: 25%;
+}
+.sm-col-span-4 {
+    width: 33.33%;
+}
+.sm-col-span-5 {
+    width: 41.66%;
+}
+.sm-col-span-6 {
+    width: 50%;
+}
+.sm-col-span-7 {
+    width: 58.33%;
+}
+.sm-col-span-8 {
+    width: 66.67%;
+}
+.sm-col-span-9 {
+    width: 75%;
+}
+.sm-col-span-10 {
+    width: 83.33%;
+}
+.sm-col-span-11 {
+    width: 91.67%;
+}
+.sm-col-span-12 {
+    width: 100%;
+}
+@media screen and (min-width: 770px) {
+    .lg-col-span-1 {
+        width: 8.33%;
+    }
+    .lg-col-span-2 {
+        width: 16.66%;
+    }
+    .lg-col-span-3 {
+        width: 25%;
+    }
+    .lg-col-span-4 {
+        width: 33.33%;
+    }
+    .lg-col-span-5 {
+        width: 41.66%;
+    }
+    .lg-col-span-6 {
+        width: 50%;
+    }
+    .lg-col-span-7 {
+        width: 58.33%;
+    }
+    .lg-col-span-8 {
+        width: 66.66%;
+    }
+    .lg-col-span-9 {
+        width: 75%;
+    }
+    .lg-col-span-10 {
+        width: 83.33%;
+    }
+    .lg-col-span-11 {
+        width: 91.67%;
+    }
+    .lg-col-span-12 {
+        width: 100%;
+    }
+}

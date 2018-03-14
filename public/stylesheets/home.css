@@ -1,0 +1,157 @@
+/* <--- MAIN BANNER --- > */
+.home {
+    position: relative;
+    margin-bottom: -40px;
+    border: //0px solid red;
+}
+.home-featured {
+    margin-bottom: 20px;
+    margin-top: 0px;
+}
+.home-featured h2 {
+    font-family: 'Raleway', sans-serif;
+    font-weight: 500;
+    font-size: 18px; //20px;
+    line-height: 2;
+    text-align: center;
+    color: #303030;
+}
+.home-featured-underline {
+    border-bottom: 1px solid #303030;
+    width: 80px; //100px;
+    margin: 10px auto;
+}
+.home-banner {
+    position: relative;
+    border: 1px solid rgba(168, 168, 168, 0.5);
+    overflow: hidden;
+    margin-bottom: 10px;
+}
+.img-container{
+    position: absolute;
+    top: 0px;
+    transition: right 0.75s; 
+}
+    
+ /* CAPTION*/
+    
+.home-banner-caption {
+    background-color: rgba(255, 255, 255, 0.65); 
+    padding: 20px;
+    margin-bottom: 10px;
+}
+.home-banner-caption h1 {
+    font-size: 30px;
+    font-weight: normal;
+    color: #303030;
+    line-height: 1;
+    margin-bottom: 20px;
+    text-align: center;
+}
+.home-banner-caption p {
+    font-size: 14px;
+    font-weight: normal;
+    line-height: 1.5;
+    color: #303030;
+}
+/* <--- SHOP NOW BUTTON ---> */
+.home-banner-btn {
+    margin-top: 30px;
+    height: 43px;
+    border: 1px solid #303030;
+    
+    color: #303030;
+    background-color: rgba(255, 255, 255, 0.65); 
+    padding: 0px;
+}
+.home-banner-btn a {
+    margin: 0;
+    display: block;
+    font-weight: 700;
+    font-size: 12px;
+    height: 43px;
+    line-height: 43px;
+    /* border: 1px solid red; */
+    text-align: center;
+    text-decoration: none;
+}
+/* unvisited link */
+    
+.home-banner-btn a:link {
+    color: #303030;
+}
+/* visited link */ 
+.home-banner-btn a:visited {
+    color: #303030;
+}
+/* mouse over link */ 
+.home-banner-btn a:hover {
+    color: rgb(168, 168, 168);
+    cursor: pointer;
+}
+/* selected link */ 
+.home-banner-btn a:active {
+    color: #111;
+}
+/* <--- DISPLAY ITEMS ---> */
+.home-display-product {
+    margin-bottom: 30px;
+}
+.home-display-product-caption h3, 
+.home-display-product-caption p {
+    text-align: center;
+}
+.home-display-product-caption h3 {
+    font-size: 14px;
+    font-weight: bold;
+    color: #303030;
+    line-height: 1.5;
+    text-transform: uppercase;
+    margin-top: 15px;
+    margin-bottom: 5px;
+    text-transform: uppercase;
+}
+.home-display-product img {
+    width: 100%;
+    height: auto;
+    border: 1px solid rgba(168, 168, 168, 0.5);
+}
+.home-display-product img:hover {
+    cursor: pointer;
+    filter: brightness(95%)
+}
+#measure {
+    border: 0px solid black;
+    overflow: hidden;
+    width: 100%;
+}
+/* <--- RESPONSIVE DISPLAY ---> */
+@media screen and (max-width: 770px) {
+    .home { 
+        margin-bottom: -20px;
+    }
+   
+    .home-display-product {
+        float: none;
+        margin-left: auto;
+        margin-right: auto;
+    }
+}
+/* <--- RESPONSIVE CAPTION & BANNER---> */
+@media screen and (min-width: 770px) {
+    .home-banner {
+        margin-bottom: 25px;
+    }
+    .home-banner-caption {
+        position: absolute;
+        left: 30px;
+        top: 80px;
+        width: 400px;
+    }
+    .home-banner-caption h1 {
+        text-align: left;
+    }
+    .home-banner-btn {
+         width: 150px;
+    }
+}

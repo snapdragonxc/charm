@@ -1,0 +1,158 @@
+.detail {
+    margin-top: 10px;
+}
+/* <--- Page Navigation Back ---> */
+.detail-nav  {
+    margin-bottom: 30px;
+}
+.detail-nav-paginate-home {
+    float: left;
+    line-height: 1;
+    margin: 0;
+    font-size: 15px;
+    color: #303030;
+}
+.detail-nav-paginate-home a:hover {
+    cursor: pointer;
+    color: #777;
+}
+/* <--- LEFT COLUMN --- > */
+.detail-left-image {
+    overflow: hidden;
+    padding: // 20px; /* 30thDec17 */
+}
+.detail-left-image img {
+    width: 100%;
+    border: 1px solid rgba(168, 168, 168, 0.5);
+    filter: //brightness(130%);
+}
+.detail-left-description p {
+    margin: 0 auto;
+    padding-top: 20px;
+    font-weight: normal;
+    font-size: 15px;
+    line-height: 1.5;
+    margin-bottom: 20px;
+}
+/* <--- RIGHT COLUMN --- > */
+.detail-right-header {
+    display: none;
+}
+.detail-right-header h2,
+.detail-left-header h2 {
+    font-weight: normal;
+    font-size: 26px;
+    color: #303030;
+    line-height: 1;    
+    letter-spacing: normal;
+    text-transform: uppercase;
+}
+.detail-right-header h4,
+.detail-left-header h4 {
+    text-transform: uppercase;
+    margin-top: 6px;
+}
+.detail-left-header h4 {
+    margin-top: 10px;
+}
+.detail-right-header h3,
+.detail-left-header h3 {
+    font-size: 20px;
+    margin-top: 23px;
+    margin-bottom: 20px;
+    line-height: 1.5;
+    font-weight: normal;
+    color: #303030;
+}
+.detail-left-header h3 {
+    margin-top: 5px;
+}
+/* <--- Detail Left ---> */
+.detail-left h4 small {
+    font-family: 'Raleway', sans-serif;
+    font-size: 14px ;
+    color: #A8A8A8 ;
+    font-weight: normal;
+}
+/* <--- Detail Right ---> */
+.detail-right h4 small {
+    font-family: 'Raleway', sans-serif;
+    font-size: 14px ;
+    color: #A8A8A8 ;
+    font-weight: normal;
+}
+.detail-right h4 {
+    font-weight: 400;
+    font-size: 15px;
+    line-height: 1.5;
+    margin-bottom: 10px;
+}
+.detail-right-info p {
+    font-weight: normal;
+    font-size: 13px;
+    line-height: 1.5;
+    margin-bottom: 13px;
+}
+.detail-right-btn {
+    width: 100%;
+    color: #fff;
+    background-color: #303030;
+    font-size: 15px;    
+    padding: 15px;
+    border: 0;
+}
+.detail-right-btn:hover {
+    background-color: #111;
+    cursor: pointer;
+}
+.detail-right-disk {
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    display: inline-block;
+    cursor: pointer;
+    border: 1px solid #c9c9c9;
+    margin-right: 15px;
+    margin-bottom: 25px;
+}
+.detail-right-qty {
+    margin-bottom: 25px;
+}
+.detail-right-info {
+    margin-top: 28px;
+    border-top: 1px solid #A8A8A8;
+}
+.detail-right-info h4 {
+    margin-top: 25px;
+    margin-bottom: 20px;
+}
+/* widget mod */
+.detail .widget-spinner-add,
+.detail .widget-spinner-sub {
+    border: 0px solid #ccc;
+}
+.detail .widget-spinner-add  {
+      border-left: 1px solid #ccc;
+}
+.detail .widget-spinner-sub {
+     border-right: 1px solid #ccc;
+}
+/* <--- Layout Responsive ---> */
+@media screen and (min-width: 770px) {
+    .detail-left-header {
+        display: none;
+    }
+    .detail-right-header {
+        display: block;
+    }
+    .detail-left  {
+        padding-left: //20px;
+        padding-right: //20px;
+    }
+    .detail {
+        margin-top: 25px;
+    }
+    .detail .widget-spinner  {
+          border-left: 1px solid #ccc;
+    }  
+}

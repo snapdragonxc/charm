@@ -1,0 +1,52 @@
+.widget-spinner {
+    overflow: hidden;
+    display: inline-block;
+    border: 1px solid #ccc;
+}
+.widget-spinner input[type=number] {
+    float: left;
+    width: 35px;//70px;
+    height: 35px;
+    padding: 0;
+    font-family: sans-serif;
+    font-weight: normal;
+    font-size: 14px;
+    text-transform: uppercase;
+    text-align: center;
+    color: #303030;
+    -webkit-border-radius:0; 
+    -webkit-border: 0px solid #ccc;
+    border: 0px solid #ccc;
+    border-radius:0;
+    background: none;
+    outline: none;
+    pointer-events: none;
+    line-height: 35px;
+}
+.widget-spinner input[type=number]::-webkit-inner-spin-button, 
+.cart-table-body-spinner input[type=number]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+}
+.widget-spinner-sub, 
+.widget-spinner-add {
+    float: left;
+    display: block;
+    width: 35px;
+    height: 35px;
+    text-align: center;
+    font-family: sans-serif;
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 35px;
+    color: #777;
+    cursor: pointer;
+    transition: 0.1s linear;
+    -o-transition: 0.1s linear;
+    -ms-transition: 0.1s linear;
+    -moz-transition: 0.1s linear;
+    -webkit-transition: 0.1s linear;
+}
+.widget-spinner-sub:hover,
+.widget-spinner-add:hover {
+    color: #999;//#25323B;
+}

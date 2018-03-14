@@ -1,0 +1,46 @@
+{
+  "name": "charm",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "webpack": "webpack --config webpack.config.js",
+    "start": "node ./bin/www"
+  },
+  "dependencies": {
+    "axios": "^0.17.1",
+    "babel-core": "^6.26.0",
+    "babel-loader": "^7.1.2",
+    "babel-polyfill": "^6.26.0",
+    "babel-preset-es2015": "^6.24.1",
+    "babel-preset-react": "^6.24.1",
+    "babel-preset-stage-1": "^6.24.1",
+    "bcrypt": "^1.0.3",
+    "body-parser": "~1.16.0",
+    "connect-mongo": "^2.0.0",
+    "cookie-parser": "~1.4.3",
+    "debug": "~2.6.0",
+    "ejs": "~2.5.5",
+    "express": "~4.14.1",
+    "express-session": "^1.15.6",
+    "history": "^4.7.2",
+    "mongo-connect": "0.0.6",
+    "mongoose": "^4.13.4",
+    "morgan": "~1.7.0",
+    "multer": "^1.3.0",
+    "passport": "^0.4.0",
+    "passport-local": "^1.0.0",
+    "react": "^16.1.1",
+    "react-dom": "^16.1.1",
+    "react-redux": "^5.0.6",
+    "react-router-dom": "^4.2.2",
+    "redux": "^3.7.2",
+    "redux-logger": "^3.0.6",
+    "redux-thunk": "^2.2.0",
+    "serve-favicon": "~2.3.2" 
+  },
+  "devDependencies": {
+    "css-loader": "^0.28.7",
+    "style-loader": "^0.19.0",
+    "webpack": "^3.8.1"
+  }
+}

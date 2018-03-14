@@ -1,0 +1,112 @@
+.categories {
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 40px;
+}
+/* <--- Header --> */
+.categories-header {
+    margin-bottom: 20px;
+  border: 0px solid black;
+}
+.categories-header h2 {
+    line-height: 32px;
+    font-size: 28px;
+    font-weight: 400;
+    display: block;
+    float: left;
+    color: #303030;
+    text-transform: capitalize;
+}
+.categories-header-btn {
+    color: #303030;
+    background-color: #ebf0f4;
+    display: inline-block;
+    padding: 5px 12px;
+    margin-bottom: 0;
+    font-size: 13px;
+    font-weight: 400;
+    line-height: 20px;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: middle;
+    -ms-touch-action: manipulation;
+    touch-action: manipulation;
+    cursor: pointer;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    background-image: none;
+    border: 1px solid #ccc;
+    border-radius: 0px;
+    float: right;
+    width: 100px;
+}
+.categories-header-btn:hover {
+  background-color: #ccc;
+}
+.categories-header-divider { 
+  width: 100%;
+  margin-bottom: 20px;
+  margin-top: 20px;
+  border-color: #ddd;
+  border: 0;
+}
+.categories-article-table {
+    border: 1px solid #ddd;
+    margin-bottom: 20px;
+    width: 100%;
+    border-collapse: collapse;
+    text-align: left;
+    font-size: 14px;
+    text-align: left;
+}
+.categories-article-table th {
+  padding: 0;
+  line-height: 1;
+  color: #595959;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  font-size: 13px;
+  padding-bottom: 15px;
+  padding-top:  15px;
+  border-bottom: 1px solid #ddd;
+}
+.categories-article-table td {
+  padding-bottom: 20px;
+  padding-top: 20px;
+  border-bottom: 1px solid #ddd;
+}
+.categories-article-table th:first-child,
+.categories-article-table td:first-child {
+    width: 170px;
+    padding-left: 10px;
+}
+.categories-article-table td:last-child, 
+.categories-article-table th:last-child {
+  text-align: center;
+}
+.categories-article-table td, 
+.categories-article-table th {
+    border: 1px solid #ddd;
+}
+.categories-article-table td:nth-child(3) {
+    width: 20%;
+}
+.categories-article-table td:nth-child(2), 
+.categories-article-table th:nth-child(2) {
+    width: 20%;
+    text-align: center;
+}
+/* <--- Links --> */
+.categories-article-table-link {
+  color: #337ab7;
+  text-decoration: none;
+}
+/* mouse over link */
+.categories-article-table-link:hover {
+    color: #234F74;
+    cursor: pointer;
+    text-decoration: underline;
+}

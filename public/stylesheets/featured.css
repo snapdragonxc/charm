@@ -1,0 +1,39 @@
+.featured {
+    margin-top: 40px;
+}
+.featured-header {
+    margin-bottom: 40px;
+}
+.featured-header h2 {
+    line-height: 38px;
+    font-size: 28px;
+    font-weight: 400;
+    display: block;
+    float: left;
+    color: #303030;
+    text-transform: capitalize;
+}
+/* <--- FEATURED TABLE ---> */
+.featured-divider {
+    border-bottom: 1px solid rgba(168, 168, 168, 0.5);
+    margin: 20px 0;
+}
+/* <--- FEATURED PRODUCT ---> */
+.featured-product-image-container {
+    margin-bottom: 20px;    
+}
+.featured-product img {
+    border: 1px solid rgba(168, 168, 168, 0.5);
+    width: 100%;    
+}
+/* <--- SELECT WIDGET ---> */
+.select-widget {
+    border: 1px solid #ccc;
+    padding: 6px;
+    font-size: 15px;
+    background-color: #fff;
+    width: 100%;
+}
+.select-widget option {
+    padding: 6px;
+}
