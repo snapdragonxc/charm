@@ -77,7 +77,7 @@ table.customer  {
     border: 1px solid #cacece;
     box-shadow: 0 1px 2px rgba(0,0,0,0.05), inset 0px -15px 10px -12px rgba(0,0,0,0.05);
     padding: 9px;
-    border-radius: 0px; /*3px;*/
+    border-radius: 0px; 
     display: inline-block;
     margin-left: 18px;
     position: relative;
@@ -102,7 +102,7 @@ table.customer  {
 /* <--- Quantity ---> */
 .customer input[type=number] {
     float: left;
-    width: 25px;//70px;
+    width: 25px;
     height: 25px;
     padding: 0;
     font-family: sans-serif;
@@ -118,7 +118,7 @@ table.customer  {
     line-height: 25px;
 }
 .customer span.spinner {
-    position: //absolute;
+    /*position: absolute;*/
     height: 25px;
     user-select: none;
     -ms-user-select: none;
@@ -154,9 +154,8 @@ table.customer  {
     border-right: 0;
 }
 .customer span.spinner > .sub:hover,
-.customer span.spinner > .add:hover {
-    background: //#ccc; //#93504C;
-    color: #999;//#25323B;
+.customer span.spinner > .add:hover {   
+    color: #999;
 }
 .customer input[type=number]::-webkit-inner-spin-button, .customer input[type=number]::-webkit-outer-spin-button {
     -webkit-appearance: none;

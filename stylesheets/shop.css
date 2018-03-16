@@ -36,7 +36,7 @@
 .shop-products-product img {
     width: 100%;    
     border: 1px solid rgba(168, 168, 168, 0.5);
-    filter: // brightness(110%);
+    /*filter: // brightness(110%);*/
 }
 .shop-products-product img:hover {
     cursor: pointer;
@@ -80,8 +80,7 @@
 }
 /* unvisited link */
 .shop-nav-filter a:link {
-    color: #000; /*#303030; */
-   
+    color: #000;  
 }
 /* visited link */
 .shop-nav-filter a:visited {

@@ -8,14 +8,13 @@
     text-transform: uppercase;
 }
 .about-nav-divider {
-    /*width: 140px; */
     width: 100%;
     margin-top: 10px;
     margin-bottom: 30px;
     border-bottom: 1px solid rgba(168, 168, 168, 0.5)
 }
 .about-aside-img-container {
-    background-color: #fcfcfc; // #ececea;
+    background-color: #fcfcfc; 
     overflow: hidden;
     border: 1px solid #ddd;
 }

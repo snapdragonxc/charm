@@ -5,7 +5,7 @@
 }
 .widget-spinner input[type=number] {
     float: left;
-    width: 35px;//70px;
+    width: 35px;
     height: 35px;
     padding: 0;
     font-family: sans-serif;
@@ -48,5 +48,5 @@
 }
 .widget-spinner-sub:hover,
 .widget-spinner-add:hover {
-    color: #999;//#25323B;
+    color: #999;
 }

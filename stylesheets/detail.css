@@ -19,12 +19,10 @@
 /* <--- LEFT COLUMN --- > */
 .detail-left-image {
     overflow: hidden;
-    padding: // 20px; /* 30thDec17 */
 }
 .detail-left-image img {
     width: 100%;
     border: 1px solid rgba(168, 168, 168, 0.5);
-    filter: //brightness(130%);
 }
 .detail-left-description p {
     margin: 0 auto;
@@ -144,10 +142,6 @@
     }
     .detail-right-header {
         display: block;
-    }
-    .detail-left  {
-        padding-left: //20px;
-        padding-right: //20px;
     }
     .detail {
         margin-top: 25px;
