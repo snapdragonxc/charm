@@ -13,7 +13,7 @@ module.exports = function (router) {
                 category: product.category,
                 price: product.price,
                 saleprice: product.saleprice,
-                url: product.url,
+                img: product.img,
                 inventory: product.inventory
             });
         newProduct.save( function(err, newProduct){
@@ -89,7 +89,7 @@ module.exports = function (router) {
                 category: req.body.category,
                 price: req.body.price,
                 saleprice: req.body.saleprice,
-                url: req.body.url,
+                img: req.body.img,
                 inventory: req.body.inventory
             }
         };
@@ -112,7 +112,7 @@ module.exports = function (router) {
             }
             Product.remove( { _id: id }, function(err){
                 //
-                fs.unlink('./public/images/products/' + product.url, function(err) {
+                fs.unlink('./public/images/products/' + product.img, function(err) {
                     if (err) {
                         return res.send("Something went wrong!");
                     }

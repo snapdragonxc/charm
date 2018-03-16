@@ -130,7 +130,7 @@ class Products extends Component {
                 <tr key={ index }>
                     <td>
                         <div className="products-table-image-container">
-                            <img src={ imgFolder + item.url } alt="" width="100" height="100" />
+                            <img src={ imgFolder + item.img } alt="" width="100" height="100" />
                         </div>
                     </td>
                     <td>

@@ -54,6 +54,8 @@ var Storage = multer.diskStorage({
 var upload = multer({
     storage: Storage
 }).array("imgUploader", 1); //Field name and max count
+//
+// <--- CREATE IMAGE ---> 
 router.post("/upload", sessionCheck, function(req, res) {
     upload(req, res, function( err) {
         if (err) {
@@ -62,16 +64,24 @@ router.post("/upload", sessionCheck, function(req, res) {
         return res.send(req.files[0].filename);
     }); 
 });
+// <--- UPDATE IMAGE --->
 var fs = require('fs');
-router.delete('/upload/:name', sessionCheck, function(req, res){
+router.put('/upload/:name', sessionCheck, function(req, res){
     var name = req.params.name;
+    // delete existing image using unlink
     fs.unlink('./public/images/products/' + name, function(err) {
         if (err) {
             return res.send("Something went wrong!");
         }
-        res.json({ name: name }); // return name of image deleted if successfull            
-    });        
-});
+        // upload new image
+        upload(req, res, function( err) {
+            if (err) {
+                return res.send("Something went wrong!");
+            }
+            return res.send(req.files[0].filename); // new file name
+        });                
+    }); 
+})
 // <--- END IMAGE HANDLING --->
 // <--- ROUTES --->
 var productRoute = require('./productRoute');

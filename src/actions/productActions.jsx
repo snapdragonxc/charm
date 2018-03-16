@@ -3,17 +3,22 @@ import Axios from 'axios';
 /* Async Actions */
 // Axios returns a dispatcher function
 // that dispatches an action at a later time - CRUD
-const productsUrl = '/api/products/';
-const productUrl = '/api/product/';
+
 // <--- CREATE ACTION --->
-export function addProduct(product){
+export function addProduct(product, file){
     return function(dispatch){
-        Axios.post(productUrl, product).then(function(response){
-            dispatch({
-                type: 'ADD_PRODUCT',
-                payload: response.data
+        Axios.post('/api/upload', file).then(function(response){           
+            product.img = response.data.toString();    
+            Axios.post('/api/product/', product).then(function(response){
+                dispatch({
+                    type: 'ADD_PRODUCT',
+                    payload: response.data
+                })
+            }).catch(function(err){
+                console.log(err);
             })
         }).catch(function(err){
+             console.log(err);
             if(err.response.status == 401) {
                 // authorisation access error
                 dispatch({
@@ -44,7 +49,7 @@ export function getProductsByCategory(category, index) {
         index = 0;
     }
     return function(dispatch){
-        Axios.get(productsUrl + category + '/' + index).then(function(response){           
+        Axios.get('/api/products/' + category + '/' + index).then(function(response){           
             dispatch({
                 type: 'GET_PRODUCTS',
                 payload: response.data // products + number of pages
@@ -54,7 +59,7 @@ export function getProductsByCategory(category, index) {
 };
 export function getProduct(index){                   
     return function(dispatch){
-        Axios.get(productUrl + index).then(function(response){           
+        Axios.get('/api/product/' + index).then(function(response){           
             dispatch({
                 type: 'GET_PRODUCT',
                 payload: response.data
@@ -62,34 +67,58 @@ export function getProduct(index){
         }).catch(function(err){})
     }        
 };
+
 // <--- UPDATE ACTION --->
-export function updateProduct(product){
-var index  = product._id;
-// console.log(index);
-// console.log('update', product);
-    return function(dispatch){
-        Axios.put(productUrl +index, product).then(function(response){
-            // console.log(response.data);            
-            dispatch({
-                type: 'UPDATE_PRODUCT',
-                payload: response.data
+export function updateProduct(product, imgData, updateImage){    
+    if(updateImage){   
+        return function(dispatch){           
+            // update image
+            Axios.put('/api/upload/' + product.img, imgData).then(function(response){  
+                // update product with new image url      
+                product.img = response.data.toString();  
+                Axios.put('/api/product/' + product._id, product).then(function(response){
+                    // console.log(response.data);            
+                    dispatch({
+                        type: 'UPDATE_PRODUCT',
+                        payload: response.data
+                    })
+                }).catch(function(err){console.log(err);})
+            }).catch(function(err){
+                if(err.response.status == 401) {
+                    // authorisation access error
+                    dispatch({
+                        type: 'AUTHORISATION_FAILURE',
+
+                        name: ''
+                    })
+                }
             })
-        }).catch(function(err){
-            if(err.response.status == 401) {
-                // authorisation access error
+        }
+    } else {
+        return function(dispatch){
+            Axios.put('/api/product/' + product._id, product).then(function(response){
+                // console.log(response.data);            
                 dispatch({
-                    type: 'AUTHORISATION_FAILURE',
-                    name: ''
+                    type: 'UPDATE_PRODUCT',
+                    payload: response.data
                 })
-            }
-        })
+            }).catch(function(err){
+                if(err.response.status == 401) {
+                    // authorisation access error
+                    dispatch({
+                        type: 'AUTHORISATION_FAILURE',
+                        name: ''
+                    })
+                }
+            })
+        }
     }
 }
 // <--- DELETE ACTION --->
 export function deleteProduct(product){
 var index = product._id;
     return function(dispatch){
-        Axios.delete(productUrl + index).then(function(response){
+        Axios.delete('/api/product/' + index).then(function(response){
             dispatch({
                 type: 'DELETE_PRODUCT',
                 payload: product

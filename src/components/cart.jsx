@@ -118,7 +118,7 @@ class Cart extends Component {
                 <div key={ index } className="row cart-table-body" >
                     <div className="sm-col-span-5 lg-col-span-3" >
                         <div className="cart-table-body-image-container">
-                            <img src={ imgFolder + item.url } />
+                            <img src={ imgFolder + item.img } />
                         </div>
                     </div>
                     <div className="sm-col-span-7 lg-col-span-4 cart-table-body-item" >

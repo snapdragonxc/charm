@@ -138,7 +138,7 @@ class Shop extends Component {
                     <div key={ index } >
                         <li className="sm-col-span-9 lg-col-span-4 shop-products-product"> 
                             <div onClick={ (event) => that.detailOnClick(event, item._id ) }>
-                                <img src={ imgFolder + item.url }/>
+                                <img src={ imgFolder + item.img }/>
                             </div>
                             <h3>{ item.name }</h3>
                             <p>{ '$' + item.price.toFixed(2) }</p>
@@ -150,7 +150,7 @@ class Shop extends Component {
                 return( 
                     <li key={ index } className="sm-col-span-9 lg-col-span-4 shop-products-product"> 
                         <div onClick={ (event) => that.detailOnClick(event, item._id ) }>
-                            <img src={ imgFolder + item.url }/>
+                            <img src={ imgFolder + item.img }/>
                         </div>
                         <h3>{ item.name }</h3>
                         <p>{ '$' + item.price.toFixed(2) }</p>

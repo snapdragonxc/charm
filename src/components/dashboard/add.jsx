@@ -5,9 +5,14 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { getProduct, addProduct } from '../../actions/productActions.jsx';
 import { getCategories } from '../../actions/categoryActions.jsx';
-import { uploadImage, deleteImage, resetImage } from '../../actions/uploadActions.jsx';
 import history from '../../history.jsx';
-import { Router, Route, Switch, Link } from 'react-router-dom'
+import { Router, Route, Switch, Link } from 'react-router-dom';
+
+const fileTypes = [
+    'image/jpeg',
+    'image/pjpeg',
+    'image/png'
+];
 class Edit extends Component {
     constructor(props){
         super(props);
@@ -23,6 +28,8 @@ class Edit extends Component {
             price: 0,
             saleprice: 0,
             inventory: 1,
+            img:'blank.jpg',
+            imgUrl: ''
         };
         this.handleSubmit = this.handleSubmit.bind(this);
         this.nameChange = this.nameChange.bind(this);
@@ -71,12 +78,10 @@ class Edit extends Component {
     }
     componentDidMount() {
         this.props.getCategories();
-        this.props.resetImage();
     }
     handleSubmit(event) {
         event.preventDefault();
-        var id = this.props.match.params.id;
-        if(this.props.imageUrl == 'blank.jpg'){
+        if(this.imgName == 'blank.jpg'){
             alert('image can not be empty');
             return;
         }
@@ -88,22 +93,23 @@ class Edit extends Component {
             alert('name can not be empty');
               return;
         } 
-        var imgUrl = this.props.imageUrl;
+        // set product
         var product = {
-            _id: id,
             name: this.state.name,
             description: this.state.description,
             category: (this.state.category === "none")? '' : this.state.category,
             price: this.state.price,
             saleprice: this.state.saleprice,
-            url: imgUrl,
+            img: this.state.img,
             inventory: this.state.inventory
         }
-            // console.log('add prod', product);
-            this.props.addProduct(product);
-            //this.props.history.push('../products');
-            this.props.resetImage(); // reset image uploader
-            this.props.history.goBack();
+        // set image
+        var imgData = new FormData();
+        var file = this.fileInput.files[0];   
+        imgData.append("imgUploader", file);
+        // post product
+        this.props.addProduct(product, imgData);          
+        this.props.history.goBack(); 
     }
     subFunction(event) {             
         event.preventDefault();
@@ -123,32 +129,44 @@ class Edit extends Component {
     }
     onCancel(event) {
         event.preventDefault();
-        if(this.props.imageUrl != 'blank.jpg'){
-            // else delete image from public folder
-            var curImage = this.props.imageUrl;
-            this.props.deleteImage(curImage);
-        }
         this.props.history.goBack();
     }
-    // 10th Jan 18
     handleImageSubmit(event) {
         event.preventDefault();
-        // console.log( `Selected file - ${ this.fileInput.files[0].name }` );
-        var data = new FormData();
-        var file = this.fileInput.files[0];
-        console.log('file', file);
-        data.append("imgUploader", file);
-        if(this.props.imageUrl == 'blank.jpg'){
-            // if image blank then add new Image.
-            this.props.uploadImage(data);
-        } else {
-            // else delete current image and add new Image.
-            var curImage = this.props.imageUrl;
-            this.props.deleteImage(curImage);
-            this.props.uploadImage(data);
-        }       
+        var curFiles = this.fileInput.files;
+        if(curFiles.length === 0) {           
+            console.log('No files currently selected for upload');
+            return;            
+        } else {            
+            if(this.validFileType(curFiles[0])) {
+                var img = curFiles[0].name;
+                var fileSize =  this.getFileSize(curFiles[0].size);
+                var imgUrl = window.URL.createObjectURL(curFiles[0]);                
+                this.setState({ imgUrl: imgUrl, img: img});
+
+            } else {
+                console.log('Not a valid file type');                    
+                return;
+            }               
+        }
+    }    
+    validFileType(file) {
+        for(var i = 0; i < fileTypes.length; i++) {
+            if(file.type === fileTypes[i]) {
+                  return true;
+            }
+        }
+        return false;
     }
-    // end 10th Jan 18
+    getFileSize(number) {
+        if(number < 1024) {
+            return number + 'bytes';
+        } else if(number > 1024 && number < 1048576) {
+            return (number/1024).toFixed(1) + 'KB';
+        } else if(number > 1048576) {
+            return (number/1048576).toFixed(1) + 'MB';
+        }
+    } 
     render(){
         var that = this;         
         const categoryOptions = this.props.categories.map(function(item, index){
@@ -205,7 +223,8 @@ class Edit extends Component {
                             <h5 className="pull-right product-aside-btn" onClick={ () => document.getElementById('selectedFile').click()} ><i className="fa fa-plus" aria-hidden="true"></i> Add Image</h5>
                             <input id="selectedFile" type="file" ref={ input => { this.fileInput = input;} } style={{display: 'none'}} onChange={this.handleImageSubmit} />
                             <div className="pull-right product-aside-image-container">
-                                <img src={ this.imgFolder + this.props.imageUrl } alt="" width='385' height='385'/>
+                                
+                                <img src={ this.state.imgUrl } alt="" width='385' height='385'/>
                             </div>
                         </aside>
                     </form>
@@ -226,17 +245,15 @@ function mapDispatchToProps(dispatch){
         getProduct: getProduct,
         addProduct: addProduct,
         getCategories: getCategories,
-        uploadImage: uploadImage,
-        deleteImage: deleteImage,
-        resetImage: resetImage
     }, dispatch)
 } 
 function mapStateToProps(state){
     return {
         product: state.productApi.product,
         categories: state.categoryApi.categories,
-        imageUrl: state.uploadApi.name,
         authenticated: state.auth.status
     }
 }
 export default connect(mapStateToProps, mapDispatchToProps)(Edit);
+
+/*<img src={ this.imgFolder + this.props.imageUrl } alt="" width='385' height='385'/>*/

@@ -7,7 +7,6 @@ import { cartReducer } from './cartReducer.jsx';
 import { authReducer } from './authReducer.jsx';
 import { navReducer } from './navReducer.jsx';
 import { featuredReducer } from './featuredReducer.jsx';
-import { uploadReducer } from './uploadReducer.jsx';
   // COMBINE THE REDUCERS & EXPORT
 export default combineReducers({
     productApi: productReducer,
@@ -16,5 +15,4 @@ export default combineReducers({
     categoryApi: categoryReducer,
     nav: navReducer,
     featuredApi: featuredReducer,
-    uploadApi: uploadReducer
 })

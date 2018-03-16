@@ -25,7 +25,7 @@ class Detail extends Component {
         this.topFunction();
     }
     componentWillUnmount() {
-        this.props.product.url = "";  /* to prevent previous image showing on mount */
+        this.props.product.img = "";  /* to prevent previous image showing on mount */
         this.props.product.name = "";
         this.props.product.description = "",
         this.props.product.price = "";
@@ -105,7 +105,7 @@ class Detail extends Component {
                             </header>
                             <div className="detail-left-image">        
                                 <div>                              
-                                    <a href={ imgFolder + product.url } target="_blank"><img src={ imgFolder + product.url } /></a>                                      
+                                    <a href={ imgFolder + product.img } target="_blank"><img src={ imgFolder + product.img } /></a>                                      
                                 </div>
                             </div>
                             <div className="detail-left-description">
