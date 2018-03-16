@@ -30,7 +30,7 @@ function AddUser(){
             });
             user.save(function(err){
                 if( !err ){
-                   // console.log('User successfully created.')
+                    console.log('User successfully created.')
                 } else {
                     console.log(err);
                 }               
@@ -38,5 +38,19 @@ function AddUser(){
         });
     });
 }
-//AddUser(); //disconnect after first call
+function userExists(name){  
+    User.findOne({
+            username: name.toLowerCase() 
+        }, function( err, user ){            
+            if(err){
+                return err;
+            }
+            if(user == null){
+                AddUser();
+            } else {
+                console.log('db contains a user with name:', name);
+            }
+        });
+}
+userExists(config.userName);
 module.exports = User;

@@ -72,8 +72,7 @@ class Edit extends Component {
         this.props.getProduct(this.props.match.params.id);
         this.props.getCategories();
     }
-    componentWillReceiveProps(nextProps){  // redux updates props and triggers a force update
-        
+    componentWillReceiveProps(nextProps){  // redux updates props and triggers a force update        
         // set initial state - occurs only once because product is updated om save only, which closes window
         this.setState({
             name: nextProps.product.name,
@@ -138,11 +137,6 @@ class Edit extends Component {
     }
     onCancel(event) {
         event.preventDefault();
-        if(this.props.imageUrl != 'blank.jpg'){
-            // else delete image from public folder
-            var curImage = this.props.imageUrl;
-            this.props.deleteImage(curImage);
-        }
         this.props.history.goBack();
     }
     handleImageSubmit(event) {
