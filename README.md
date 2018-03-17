@@ -47,7 +47,7 @@ An example installation 'Setting up MERN Stack on AWS EC2', by Keith Weaver, is 
 Note that this example installation uses a linux distribution version of MongoDB and does not include the official MongoDB 
 installation, which is described at:
 
-[Install MongoDB Community Edition on Ubuntu](https://docs.mongodb.com/manual/tutorial/install-mongodb-on-ubuntu/)
+[https://docs.mongodb.com/manual/tutorial/install-mongodb-on-ubuntu](https://docs.mongodb.com/manual/tutorial/install-mongodb-on-ubuntu/)
 
 Also note that MongoDB must be restarted in order for the authentication to take effect. 
 
