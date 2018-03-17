@@ -50,7 +50,7 @@ installation, which is described at:
 
 [https://docs.mongodb.com/manual/tutorial/install-mongodb-on-ubuntu](https://docs.mongodb.com/manual/tutorial/install-mongodb-on-ubuntu/)
 
-Also note that MongoDB must be restarted in order for the authentication to take effect. 
+Also note that MongoDB must be restarted in order for the database authentication to take effect. 
 
 
 To install locally ensire that you have first installed NodeJS and MongoDB. Then use npm: 
