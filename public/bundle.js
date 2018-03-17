@@ -31935,60 +31935,64 @@ var Categories = function (_Component) {
             });
             return _react2.default.createElement(
                 'div',
-                { className: 'row categories' },
+                { className: 'row' },
                 _react2.default.createElement(
-                    'header',
-                    { className: 'lg-col-span-12 categories-header' },
+                    'div',
+                    { className: 'categories' },
                     _react2.default.createElement(
-                        'h2',
-                        null,
-                        'Categories'
-                    ),
-                    _react2.default.createElement(
-                        'button',
-                        { className: 'categories-header-btn', onClick: function onClick(event) {
-                                return _this2.addOnClick(event);
-                            } },
-                        'ADD'
-                    ),
-                    _react2.default.createElement('div', { className: 'clear' }),
-                    _react2.default.createElement('div', { className: 'categories-header-divider' })
-                ),
-                _react2.default.createElement(
-                    'article',
-                    { className: 'lg-col-span-12' },
-                    _react2.default.createElement(
-                        'table',
-                        { className: 'categories-article-table' },
+                        'header',
+                        { className: 'lg-col-span-12 categories-header' },
                         _react2.default.createElement(
-                            'thead',
+                            'h2',
                             null,
+                            'Categories'
+                        ),
+                        _react2.default.createElement(
+                            'button',
+                            { className: 'categories-header-btn', onClick: function onClick(event) {
+                                    return _this2.addOnClick(event);
+                                } },
+                            'ADD'
+                        ),
+                        _react2.default.createElement('div', { className: 'clear' }),
+                        _react2.default.createElement('div', { className: 'categories-header-divider' })
+                    ),
+                    _react2.default.createElement(
+                        'article',
+                        { className: 'lg-col-span-12' },
+                        _react2.default.createElement(
+                            'table',
+                            { className: 'categories-article-table' },
                             _react2.default.createElement(
-                                'tr',
+                                'thead',
                                 null,
                                 _react2.default.createElement(
-                                    'th',
+                                    'tr',
                                     null,
-                                    'Name'
-                                ),
-                                _react2.default.createElement(
-                                    'th',
-                                    null,
-                                    'Edit'
-                                ),
-                                _react2.default.createElement(
-                                    'th',
-                                    null,
-                                    'Delete'
+                                    _react2.default.createElement(
+                                        'th',
+                                        null,
+                                        'Name'
+                                    ),
+                                    _react2.default.createElement(
+                                        'th',
+                                        null,
+                                        'Edit'
+                                    ),
+                                    _react2.default.createElement(
+                                        'th',
+                                        null,
+                                        'Delete'
+                                    )
                                 )
-                            )
-                        ),
-                        _react2.default.createElement(
-                            'tbody',
-                            null,
-                            list
-                        ),
-                        _react2.default.createElement('tfoot', null)
+                            ),
+                            _react2.default.createElement(
+                                'tbody',
+                                null,
+                                list
+                            ),
+                            _react2.default.createElement('tfoot', null)
+                        )
                     )
                 )
             );

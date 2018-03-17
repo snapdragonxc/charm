@@ -57,7 +57,8 @@ class Categories extends Component {
                 </tr>)
         });
         return (
-            <div className="row categories">
+            <div className="row">
+                <div className="categories">
                 <header className="lg-col-span-12 categories-header">                      
                     <h2>Categories</h2>                         
                     <button className="categories-header-btn" onClick={ (event) => this.addOnClick(event)}>ADD</button>        
@@ -79,6 +80,7 @@ class Categories extends Component {
                         <tfoot></tfoot>
                     </table>                                                                   
                 </article>
+                </div>
             </div>);
     }
 }
