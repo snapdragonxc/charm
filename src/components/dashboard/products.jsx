@@ -39,6 +39,7 @@ class Products extends Component {
         this.unlisten();
     }
     componentWillReceiveProps(nextProps){  // redux updates props and triggers a force update
+        // console.log(nextProps);
     }
     pageIndex(){
         var pathname = this.props.location.pathname;

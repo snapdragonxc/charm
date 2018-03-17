@@ -98,13 +98,13 @@ class Edit extends Component {
             return;
         }   
         var updateImage = false;
-        var imgData = new FormData();
+        var payload = new FormData();
         var existingImg = this.props.product.img;
         //
         if(this.state.img != existingImg){
             updateImage = true;
             var file = this.fileInput.files[0];   
-            imgData.append("imgUploader", file); 
+            payload.append("imgUploader", file); 
         }    
         var product = {
             _id: id,
@@ -115,8 +115,17 @@ class Edit extends Component {
             saleprice: this.state.saleprice,
             inventory: this.state.inventory,
             img: existingImg
-        }       
-        this.props.updateProduct(product, imgData, updateImage);
+        }     
+        payload.append("_id", product._id); 
+        payload.append("name", product.name); 
+        payload.append("description", product.description); 
+        payload.append("category", product.category); 
+        payload.append("price", product.price); 
+        payload.append("saleprice", product.saleprice); 
+        payload.append("img", product.img); 
+        payload.append("inventory", product.inventory); 
+        payload.append("updateImage", updateImage); 
+        this.props.updateProduct(product._id, payload);
         this.props.history.goBack(); 
     }
     subFunction(event) {             

@@ -68,8 +68,12 @@ class Shop extends Component {
     handleOptionChange(category) {
         this.categoryOnClick( category );
     }
-    detailOnClick(event, _id) {
+    detailOnClick(event, _id, inventory) {
         event.preventDefault();
+        console.log(inventory)
+        if(inventory === 0){
+            return;
+        }
         this.props.history.push("/detail/" + _id);
     }
     onClickRoute(event, index){
@@ -137,11 +141,14 @@ class Shop extends Component {
                 return( 
                     <div key={ index } >
                         <li className="sm-col-span-9 lg-col-span-4 shop-products-product"> 
-                            <div onClick={ (event) => that.detailOnClick(event, item._id ) }>
+                            <div onClick={ (event) => that.detailOnClick(event, item._id, item.inventory ) }>
                                 <img src={ imgFolder + item.img }/>
                             </div>
                             <h3>{ item.name }</h3>
-                            <p>{ '$' + item.price.toFixed(2) }</p>
+                            { ( item.inventory === 0 )? 
+                            <p> <span className="shop-products-product-price-out-of-stock">{ '$' + item.price.toFixed(2) }</span>
+                                <span className="shop-products-product-out-of-stock"> Out of Stock</span></p> :
+                            <p>{ '$' + item.price.toFixed(2) }</p>}
                         </li>
                         <div className="clear"></div>
                     </div>
@@ -149,11 +156,14 @@ class Shop extends Component {
             } else {
                 return( 
                     <li key={ index } className="sm-col-span-9 lg-col-span-4 shop-products-product"> 
-                        <div onClick={ (event) => that.detailOnClick(event, item._id ) }>
+                        <div onClick={ (event) => that.detailOnClick(event, item._id, item.inventory ) }>
                             <img src={ imgFolder + item.img }/>
                         </div>
-                        <h3>{ item.name }</h3>
-                        <p>{ '$' + item.price.toFixed(2) }</p>
+                         <h3>{ item.name }</h3>
+                        { ( item.inventory === 0 )? 
+                            <p> <span className="shop-products-product-price-out-of-stock">{ '$' + item.price.toFixed(2) }</span>
+                                <span className="shop-products-product-out-of-stock"> Out of Stock</span></p> :
+                            <p>{ '$' + item.price.toFixed(2) }</p>}
                     </li>
                 )
             }

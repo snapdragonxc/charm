@@ -42,6 +42,8 @@ class Edit extends Component {
         this.handleImageSubmit = this.handleImageSubmit.bind(this);
     }
     componentWillReceiveProps(nextProps){  // redux updates props and triggers a force update
+
+
     }
     nameChange(event) {
         this.setState({
@@ -104,11 +106,17 @@ class Edit extends Component {
             inventory: this.state.inventory
         }
         // set image
-        var imgData = new FormData();
+        var productData = new FormData();
         var file = this.fileInput.files[0];   
-        imgData.append("imgUploader", file);
+        productData.append("imgUploader", file);
+        productData.append("name", product.name);
+        productData.append("description", product.description);
+        productData.append("category", product.category);
+        productData.append("price", product.price);
+        productData.append("saleprice", product.saleprice);
+        productData.append("inventory", product.inventory);
         // post product
-        this.props.addProduct(product, imgData);          
+        this.props.addProduct(productData);          
         this.props.history.goBack(); 
     }
     subFunction(event) {             

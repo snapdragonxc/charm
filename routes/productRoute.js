@@ -2,26 +2,51 @@
 var mongoose = require('mongoose');
 var Product = require('../models/product.js');
 var sessionCheck = require('./sessionCheck');
+//
+// <--- IMAGE HANDLING --->
+var fs = require('fs');
+var multer = require('multer'); 
+var Storage = multer.diskStorage({
+    destination: function(req, file, callback) {
+        callback(null, "./public/images/products");
+    },
+    filename: function(req, file, callback) {
+        callback(null,  Date.now() + "_" + file.originalname );
+    }
+});
+var upload = multer({
+    storage: Storage
+}).array("imgUploader", 1); //Field name and max count
+// <--- END IMAGE HANDLING --->
+//
 module.exports = function (router) { 
     // ************** THE FOUR CRUD OPERATIONS ****************** //
     // <--- CREATE PRODUCT --->
     router.post('/product', sessionCheck, function(req, res){
-        var product = req.body;
-        var newProduct = new Product({
-                name: product.name,
-                description: product.description,
-                category: product.category,
-                price: product.price,
-                saleprice: product.saleprice,
-                img: product.img,
-                inventory: product.inventory
-            });
-        newProduct.save( function(err, newProduct){
-            if(err){
-                return console.log(err);
+
+        console.log(req.body);
+        upload(req, res, function( err) {
+
+            console.log(req.body);
+            if (err) {
+                return res.send("image upload err:", err);
             }
-            return res.json(newProduct);
-        })
+            var newProduct = new Product({
+                name: req.body.name,
+                description: req.body.description,
+                category: req.body.category,
+                price: req.body.price,
+                saleprice: req.body.saleprice,
+                img: req.files[0].filename,
+                inventory: req.body.inventory
+            });
+            newProduct.save( function(err, newProduct){
+                if(err){
+                    return console.log("product save error: ", err);
+                }
+                return res.json(newProduct);
+            })
+        }); 
     });
     // <--- RETRIEVE PRODUCTS --->
     router.get('/allProducts', function(req, res, next) {
@@ -82,28 +107,51 @@ module.exports = function (router) {
     // <--- UPDATE PRODUCT --->
     router.put('/product/:_id', sessionCheck, function(req, res){
         var id = req.params._id;
-        var update = {
-            '$set': {
-                name: req.body.name,
-                description: req.body.description,
-                category: req.body.category,
-                price: req.body.price,
-                saleprice: req.body.saleprice,
-                img: req.body.img,
-                inventory: req.body.inventory
+        upload(req, res, function( err) {
+            var update = {
+                '$set': {
+                    name: req.body.name,
+                    description: req.body.description,
+                    category: req.body.category,
+                    price: req.body.price,
+                    saleprice: req.body.saleprice,
+                    img: req.body.img,
+                    inventory: req.body.inventory
+                }
+            };
+            if (err) {
+                return res.send(err);
+            }           
+            if(req.body.updateImage === 'true'){
+                // new image, remove existing image
+                fs.unlink('./public/images/products/' + req.body.img, function(err) { 
+                    if (err) {
+                        return res.send(err);
+                    }
+                    update.$set.img = req.files[0].filename;
+                    Product.findOneAndUpdate({
+                        _id: id
+                    }, update, {new: true}, function(err, product){           
+                        if(err){
+                            return console.log(err);
+                        }
+                        res.json(product);
+                    })
+                });
+            } else {
+                Product.findOneAndUpdate({
+                    _id: id
+                }, update, {new: true}, function(err, product){           
+                    if(err){
+                        return console.log(err);
+                    }
+                    res.json(product);
+                })
             }
-        };
-        Product.findOneAndUpdate({
-            _id: id
-        }, update, {new: true}, function(err, product){           
-            if(err){
-                return console.log(err);
-            }
-            res.json(product);
-        })
+        });                
+ 
     })
     // <--- DELETE PRODUCT --->
-    var fs = require('fs');
     router.delete('/product/:_id', sessionCheck, function(req, res){
         var id = req.params._id;      
         Product.findOne( { _id: id } ).exec( function(err, product) {

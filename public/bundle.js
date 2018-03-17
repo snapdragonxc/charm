@@ -994,19 +994,13 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 /* Async Actions */
 // Axios returns a dispatcher function
 // that dispatches an action at a later time - CRUD
-
 // <--- CREATE ACTION --->
-function addProduct(product, file) {
+function addProduct(payload) {
     return function (dispatch) {
-        _axios2.default.post('/api/upload', file).then(function (response) {
-            product.img = response.data.toString();
-            _axios2.default.post('/api/product/', product).then(function (response) {
-                dispatch({
-                    type: 'ADD_PRODUCT',
-                    payload: response.data
-                });
-            }).catch(function (err) {
-                console.log(err);
+        _axios2.default.post('/api/product/', payload).then(function (response) {
+            dispatch({
+                type: 'ADD_PRODUCT',
+                payload: response.data
             });
         }).catch(function (err) {
             console.log(err);
@@ -1058,54 +1052,26 @@ function getProduct(index) {
         }).catch(function (err) {});
     };
 };
-
 // <--- UPDATE ACTION --->
-function updateProduct(product, imgData, updateImage) {
-    if (updateImage) {
-        return function (dispatch) {
-            // update image
-            _axios2.default.put('/api/upload/' + product.img, imgData).then(function (response) {
-                // update product with new image url      
-                product.img = response.data.toString();
-                _axios2.default.put('/api/product/' + product._id, product).then(function (response) {
-                    // console.log(response.data);            
-                    dispatch({
-                        type: 'UPDATE_PRODUCT',
-                        payload: response.data
-                    });
-                }).catch(function (err) {
-                    console.log(err);
-                });
-            }).catch(function (err) {
-                if (err.response.status == 401) {
-                    // authorisation access error
-                    dispatch({
-                        type: 'AUTHORISATION_FAILURE',
-
-                        name: ''
-                    });
-                }
+function updateProduct(id, payload) {
+    return function (dispatch) {
+        // update image 
+        _axios2.default.put('/api/product/' + id, payload).then(function (response) {
+            dispatch({
+                type: 'UPDATE_PRODUCT',
+                payload: response.data
             });
-        };
-    } else {
-        return function (dispatch) {
-            _axios2.default.put('/api/product/' + product._id, product).then(function (response) {
-                // console.log(response.data);            
+        }).catch(function (err) {
+            if (err.response.status == 401) {
+                // authorisation access error
                 dispatch({
-                    type: 'UPDATE_PRODUCT',
-                    payload: response.data
+                    type: 'AUTHORISATION_FAILURE',
+
+                    name: ''
                 });
-            }).catch(function (err) {
-                if (err.response.status == 401) {
-                    // authorisation access error
-                    dispatch({
-                        type: 'AUTHORISATION_FAILURE',
-                        name: ''
-                    });
-                }
-            });
-        };
-    }
+            }
+        });
+    };
 }
 // <--- DELETE ACTION --->
 function deleteProduct(product) {
@@ -29111,8 +29077,12 @@ var Shop = function (_Component) {
         }
     }, {
         key: 'detailOnClick',
-        value: function detailOnClick(event, _id) {
+        value: function detailOnClick(event, _id, inventory) {
             event.preventDefault();
+            console.log(inventory);
+            if (inventory === 0) {
+                return;
+            }
             this.props.history.push("/detail/" + _id);
         }
     }, {
@@ -29204,7 +29174,7 @@ var Shop = function (_Component) {
                             _react2.default.createElement(
                                 'div',
                                 { onClick: function onClick(event) {
-                                        return that.detailOnClick(event, item._id);
+                                        return that.detailOnClick(event, item._id, item.inventory);
                                     } },
                                 _react2.default.createElement('img', { src: imgFolder + item.img })
                             ),
@@ -29213,7 +29183,21 @@ var Shop = function (_Component) {
                                 null,
                                 item.name
                             ),
-                            _react2.default.createElement(
+                            item.inventory === 0 ? _react2.default.createElement(
+                                'p',
+                                null,
+                                ' ',
+                                _react2.default.createElement(
+                                    'span',
+                                    { className: 'shop-products-product-price-out-of-stock' },
+                                    '$' + item.price.toFixed(2)
+                                ),
+                                _react2.default.createElement(
+                                    'span',
+                                    { className: 'shop-products-product-out-of-stock' },
+                                    ' Out of Stock'
+                                )
+                            ) : _react2.default.createElement(
                                 'p',
                                 null,
                                 '$' + item.price.toFixed(2)
@@ -29228,7 +29212,7 @@ var Shop = function (_Component) {
                         _react2.default.createElement(
                             'div',
                             { onClick: function onClick(event) {
-                                    return that.detailOnClick(event, item._id);
+                                    return that.detailOnClick(event, item._id, item.inventory);
                                 } },
                             _react2.default.createElement('img', { src: imgFolder + item.img })
                         ),
@@ -29237,7 +29221,21 @@ var Shop = function (_Component) {
                             null,
                             item.name
                         ),
-                        _react2.default.createElement(
+                        item.inventory === 0 ? _react2.default.createElement(
+                            'p',
+                            null,
+                            ' ',
+                            _react2.default.createElement(
+                                'span',
+                                { className: 'shop-products-product-price-out-of-stock' },
+                                '$' + item.price.toFixed(2)
+                            ),
+                            _react2.default.createElement(
+                                'span',
+                                { className: 'shop-products-product-out-of-stock' },
+                                ' Out of Stock'
+                            )
+                        ) : _react2.default.createElement(
                             'p',
                             null,
                             '$' + item.price.toFixed(2)
@@ -30619,6 +30617,7 @@ var Products = function (_Component) {
     }, {
         key: 'componentWillReceiveProps',
         value: function componentWillReceiveProps(nextProps) {// redux updates props and triggers a force update
+            // console.log(nextProps);
         }
     }, {
         key: 'pageIndex',
@@ -30986,6 +30985,8 @@ var Edit = function (_Component) {
     _createClass(Edit, [{
         key: 'componentWillReceiveProps',
         value: function componentWillReceiveProps(nextProps) {// redux updates props and triggers a force update
+
+
         }
     }, {
         key: 'nameChange',
@@ -31065,11 +31066,17 @@ var Edit = function (_Component) {
                 img: this.state.img,
                 inventory: this.state.inventory
                 // set image
-            };var imgData = new FormData();
+            };var productData = new FormData();
             var file = this.fileInput.files[0];
-            imgData.append("imgUploader", file);
+            productData.append("imgUploader", file);
+            productData.append("name", product.name);
+            productData.append("description", product.description);
+            productData.append("category", product.category);
+            productData.append("price", product.price);
+            productData.append("saleprice", product.saleprice);
+            productData.append("inventory", product.inventory);
             // post product
-            this.props.addProduct(product, imgData);
+            this.props.addProduct(productData);
             this.props.history.goBack();
         }
     }, {
@@ -31497,13 +31504,13 @@ var Edit = function (_Component) {
                 return;
             }
             var updateImage = false;
-            var imgData = new FormData();
+            var payload = new FormData();
             var existingImg = this.props.product.img;
             //
             if (this.state.img != existingImg) {
                 updateImage = true;
                 var file = this.fileInput.files[0];
-                imgData.append("imgUploader", file);
+                payload.append("imgUploader", file);
             }
             var product = {
                 _id: id,
@@ -31515,7 +31522,16 @@ var Edit = function (_Component) {
                 inventory: this.state.inventory,
                 img: existingImg
             };
-            this.props.updateProduct(product, imgData, updateImage);
+            payload.append("_id", product._id);
+            payload.append("name", product.name);
+            payload.append("description", product.description);
+            payload.append("category", product.category);
+            payload.append("price", product.price);
+            payload.append("saleprice", product.saleprice);
+            payload.append("img", product.img);
+            payload.append("inventory", product.inventory);
+            payload.append("updateImage", updateImage);
+            this.props.updateProduct(product._id, payload);
             this.props.history.goBack();
         }
     }, {

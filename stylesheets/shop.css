@@ -42,6 +42,15 @@
     cursor: pointer;
     filter: brightness(95%)
 }
+
+.shop-products-product-out-of-stock {
+    text-transform: 'uppercase';
+    color: #FF0000;
+}
+.shop-products-product-price-out-of-stock {
+    text-decoration: line-through;
+}
+
 /* <--- RESPONSIVE LIST ITEM ---> */
 @media screen and (min-width: 770px) {
     .shop-products-product {
