@@ -3,7 +3,8 @@
 **charm** is a responsive, Ecommerce website template built using the following technologies:
 - ReactJS
 - ReduxJS
-- MongoDB/Mongoose
+- MongoDB
+- Mongoose
 - ExpressJS
 - Multer (image handling)
 - PassportJS (authentication)
