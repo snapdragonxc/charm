@@ -51,6 +51,7 @@ installation, which is described at:
 
 Also note that MongoDB must be restarted in order for the authentication to take effect. 
 
+
 To install locally ensire that you have first installed NodeJS and MongoDB. Then use npm: 
 
 ```
