@@ -20,7 +20,7 @@ class PaymentBtn extends React.Component {
                 label: 'checkout'
             },
             client: {
-                sandbox:    'XXXXXX',
+                sandbox:    'xxxxxx',
                 production: '<insert production client id>'
             },
             commit: true
@@ -46,8 +46,10 @@ class PaymentBtn extends React.Component {
         });
     }
     onAuthorize(data, actions) {
+        var callback = this.props.callback;
         return actions.payment.execute().then(function(paymentData) {
             // Show a success page to the buyer
+            callback();
         });
     }
     render() {
@@ -68,9 +70,11 @@ class Cart extends Component {
     constructor(props){
         super(props);
         //this.state = {value: 1, max: 10, min: 1}    
+        this.state = {message: 'Your cart is empty'}    
         this.handleChange = this.handleChange.bind(this); // To prevent ReactJS warning message if omitted
         this.subFunction = this.subFunction.bind(this);
         this.addFunction = this.addFunction.bind(this);
+        this.onPay = this.onPay.bind(this);
         this.onDelete = this.onDelete.bind(this);
         this.maxQty = 10;
         this.minQty = 1;
@@ -93,6 +97,12 @@ class Cart extends Component {
         var cartAfterDelete = [...cart.slice(0, indexToDelete), ...cart.slice(indexToDelete + 1)]
         this.props.deleteCartItem(cartAfterDelete);
     }     
+
+    onPay(){   
+        var cartAfterDelete = []
+        this.props.deleteCartItem(cartAfterDelete);
+        this.setState({message: 'Payment successful'})
+    }
     subFunction(event, _id, quantity){
         // console.log('sub', _id, 'qty', quantity);
         event.preventDefault();
@@ -137,7 +147,7 @@ class Cart extends Component {
                     <div className="sm-col-span-12 lg-col-span-12"><div className="cart-table-divider"></div></div>
                 </div>)
         });
-        const Table = (props) => {    
+        const Table = (props) => {   
             return (
                 <form>
                     <div className="row cart-table-header">                    
@@ -158,7 +168,7 @@ class Cart extends Component {
                     </div>
                 </form>)          
         }
-        const EmptyTable = () => {
+        const EmptyTable = (props) => {
             return (
                 <div>
                     <div className="row"> 
@@ -167,7 +177,10 @@ class Cart extends Component {
                     <div className="row">
                         <div className="sm-col-span-12 lg-col-span-12">
                             <div className="cart-empty-table">
-                                Your cart is empty                               
+                                <h3>{ props.message }</h3>
+                                <h3><a onClick={ (event) => this.props.history.goBack() }>
+                                    <i className="fa fa-angle-left" aria-hidden="true"></i>&nbsp;Return</a>
+                                </h3>                  
                             </div>
                         </div>
                     </div>
@@ -179,21 +192,21 @@ class Cart extends Component {
                     <div className="sm-col-span-12 lg-col-span-6"><h2>{'My Cart (' + num + ')'}</h2></div>
                     <div className="sm-col-span-12 lg-col-span-6">
                         <div className="pay-btn">
-                            { ( num === 0 )? <div></div> : <PaymentBtn cart={this.props.cart} total={total}/> }                                
+                            { ( num === 0 )? <div></div> : <PaymentBtn callback={ that.onPay } cart={this.props.cart} total={total}/> }                                
                         </div>
                     </div>
                 </header>    
-                { ( num === 0 )? <EmptyTable /> : <Table list={ list } total={ total } /> }                                                
+                { ( num === 0 )? <EmptyTable message={this.state.message} /> : <Table list={ list } total={ total } /> }                                                
                 <div className="row"> 
                     <div className="sm-col-span-12 lg-col-span-12"><div className="cart-table-divider"></div></div>
                 </div>
                 <footer className="row cart-footer">                      
                     <div className="sm-col-span-12 lg-col-span-12">
                         <div className="pay-btn">
-                            { ( num === 0 )? <div></div> : <PaymentBtn cart={this.props.cart} total={total}/> }    
+                            { ( num === 0 )? <div></div> : <PaymentBtn callback={ that.onPay } cart={this.props.cart} total={total}/> }    
                         </div>
                     </div>
-                </footer>    
+                </footer>   
             </div>);
     }
 }

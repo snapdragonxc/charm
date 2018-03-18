@@ -280,9 +280,26 @@
     }
 }
 /* <--- EMPTY CART ---> */
-.cart-empty-table {
+/*.cart-empty-table {
     line-height: 220px;
     font-size: 20px;
     text-align: center;
     color: #303030;
+}*/
+.cart-empty-table {
+    padding-top: 80px;
+
+    padding-bottom: 80px;
+}
+.cart-empty-table h3 {
+    line-height: 1.5;
+    margin: 0;
+    font-size: 18px;
+    color: #303030;
+    font-weight: normal;
+    text-align: center;
+}
+.cart-empty-table h3 a:hover {
+    cursor: pointer;
+    color: #777;
 }

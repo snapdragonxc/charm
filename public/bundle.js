@@ -29688,7 +29688,7 @@ var PaymentBtn = function (_React$Component) {
                 label: 'checkout'
             },
             client: {
-                sandbox: 'XXXXXX',
+                sandbox: 'AeE0nt0OqqRZ5-GUeNju35QHkNzj3S3isMQbh1LyfJobTJ-8e0ot-ERNKzpsPL5ZARLLYWR-_O0RwF4T',
                 production: '<insert production client id>'
             },
             commit: true
@@ -29719,8 +29719,10 @@ var PaymentBtn = function (_React$Component) {
     }, {
         key: 'onAuthorize',
         value: function onAuthorize(data, actions) {
+            var callback = this.props.callback;
             return actions.payment.execute().then(function (paymentData) {
                 // Show a success page to the buyer
+                callback();
             });
         }
     }, {
@@ -29757,9 +29759,11 @@ var Cart = function (_Component) {
         //this.state = {value: 1, max: 10, min: 1}    
         var _this3 = _possibleConstructorReturn(this, (Cart.__proto__ || Object.getPrototypeOf(Cart)).call(this, props));
 
+        _this3.state = { message: 'Your cart is empty' };
         _this3.handleChange = _this3.handleChange.bind(_this3); // To prevent ReactJS warning message if omitted
         _this3.subFunction = _this3.subFunction.bind(_this3);
         _this3.addFunction = _this3.addFunction.bind(_this3);
+        _this3.onPay = _this3.onPay.bind(_this3);
         _this3.onDelete = _this3.onDelete.bind(_this3);
         _this3.maxQty = 10;
         _this3.minQty = 1;
@@ -29790,6 +29794,13 @@ var Cart = function (_Component) {
             this.props.deleteCartItem(cartAfterDelete);
         }
     }, {
+        key: 'onPay',
+        value: function onPay() {
+            var cartAfterDelete = [];
+            this.props.deleteCartItem(cartAfterDelete);
+            this.setState({ message: 'Payment successful' });
+        }
+    }, {
         key: 'subFunction',
         value: function subFunction(event, _id, quantity) {
             // console.log('sub', _id, 'qty', quantity);
@@ -29807,6 +29818,8 @@ var Cart = function (_Component) {
     }, {
         key: 'render',
         value: function render() {
+            var _this4 = this;
+
             var imgFolder = "images/products/";
             var total = this.props.totalAmount || 0;
             var num = this.props.totalQty || 0;
@@ -29945,7 +29958,7 @@ var Cart = function (_Component) {
                     )
                 );
             };
-            var EmptyTable = function EmptyTable() {
+            var EmptyTable = function EmptyTable(props) {
                 return _react2.default.createElement(
                     'div',
                     null,
@@ -29967,7 +29980,23 @@ var Cart = function (_Component) {
                             _react2.default.createElement(
                                 'div',
                                 { className: 'cart-empty-table' },
-                                'Your cart is empty'
+                                _react2.default.createElement(
+                                    'h3',
+                                    null,
+                                    props.message
+                                ),
+                                _react2.default.createElement(
+                                    'h3',
+                                    null,
+                                    _react2.default.createElement(
+                                        'a',
+                                        { onClick: function onClick(event) {
+                                                return _this4.props.history.goBack();
+                                            } },
+                                        _react2.default.createElement('i', { className: 'fa fa-angle-left', 'aria-hidden': 'true' }),
+                                        '\xA0Return'
+                                    )
+                                )
                             )
                         )
                     )
@@ -29994,11 +30023,11 @@ var Cart = function (_Component) {
                         _react2.default.createElement(
                             'div',
                             { className: 'pay-btn' },
-                            num === 0 ? _react2.default.createElement('div', null) : _react2.default.createElement(PaymentBtn, { cart: this.props.cart, total: total })
+                            num === 0 ? _react2.default.createElement('div', null) : _react2.default.createElement(PaymentBtn, { callback: that.onPay, cart: this.props.cart, total: total })
                         )
                     )
                 ),
-                num === 0 ? _react2.default.createElement(EmptyTable, null) : _react2.default.createElement(Table, { list: list, total: total }),
+                num === 0 ? _react2.default.createElement(EmptyTable, { message: this.state.message }) : _react2.default.createElement(Table, { list: list, total: total }),
                 _react2.default.createElement(
                     'div',
                     { className: 'row' },
@@ -30017,7 +30046,7 @@ var Cart = function (_Component) {
                         _react2.default.createElement(
                             'div',
                             { className: 'pay-btn' },
-                            num === 0 ? _react2.default.createElement('div', null) : _react2.default.createElement(PaymentBtn, { cart: this.props.cart, total: total })
+                            num === 0 ? _react2.default.createElement('div', null) : _react2.default.createElement(PaymentBtn, { callback: that.onPay, cart: this.props.cart, total: total })
                         )
                     )
                 )
