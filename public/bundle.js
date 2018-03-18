@@ -28747,7 +28747,7 @@ var Home = function (_Component) {
                 if (nextProps.featuredProductsInFull[i]) {
                     // if exist
                     displayList[i]._id = nextProps.featuredProductsInFull[i]._id;
-                    displayList[i].productUrl = nextProps.featuredProductsInFull[i].url;
+                    displayList[i].productUrl = nextProps.featuredProductsInFull[i].img;
                     displayList[i].name = nextProps.featuredProductsInFull[i].name;
                     displayList[i].price = nextProps.featuredProductsInFull[i].price;
                 }
@@ -32492,7 +32492,7 @@ var Featured = function (_Component) {
                         }
                     });
                     if (product) {
-                        featuredList[index].productUrl = product.url;
+                        featuredList[index].productUrl = product.img;
                     }
                 }
             }
@@ -32527,7 +32527,7 @@ var Featured = function (_Component) {
             // <--- Update State with new _id/image url --->
             var featuredList = this.state.featuredList.concat();
             featuredList[index].productId = featuredProduct._id;
-            featuredList[index].productUrl = featuredProduct.url;
+            featuredList[index].productUrl = featuredProduct.img;
             this.setState({
                 featuredList: featuredList
             });

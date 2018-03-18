@@ -24,12 +24,18 @@ module.exports = function (router) {
     // <--- CREATE PRODUCT --->
     router.post('/product', sessionCheck, function(req, res){
 
-        console.log(req.body);
+        //console.log(req.body);
+
+        var img = '';
+
         upload(req, res, function( err) {
 
             console.log(req.body);
             if (err) {
                 return res.send("image upload err:", err);
+            }
+            if(req.files[0] != undefined){
+                img = req.files[0].filename;
             }
             var newProduct = new Product({
                 name: req.body.name,
@@ -37,7 +43,7 @@ module.exports = function (router) {
                 category: req.body.category,
                 price: req.body.price,
                 saleprice: req.body.saleprice,
-                img: req.files[0].filename,
+                img: img,
                 inventory: req.body.inventory
             });
             newProduct.save( function(err, newProduct){

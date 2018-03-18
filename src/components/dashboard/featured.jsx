@@ -56,7 +56,7 @@ class Featured extends Component {
                     }
                 })
                 if( product ){                                
-                    featuredList[index].productUrl = product.url;
+                    featuredList[index].productUrl = product.img;
                 }
             }
         }
@@ -89,7 +89,7 @@ class Featured extends Component {
         // <--- Update State with new _id/image url --->
         var featuredList = this.state.featuredList.concat();
         featuredList[index].productId = featuredProduct._id;
-        featuredList[index].productUrl = featuredProduct.url;        
+        featuredList[index].productUrl = featuredProduct.img;        
         this.setState({
             featuredList: featuredList
         }) 

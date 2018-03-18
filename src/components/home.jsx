@@ -73,7 +73,7 @@ class Home extends Component {
         for( var i = 0; i < displayList.length; i++ ){
             if( nextProps.featuredProductsInFull[i] ) { // if exist
                 displayList[i]._id = nextProps.featuredProductsInFull[i]._id;                            
-                displayList[i].productUrl = nextProps.featuredProductsInFull[i].url;
+                displayList[i].productUrl = nextProps.featuredProductsInFull[i].img;
                 displayList[i].name = nextProps.featuredProductsInFull[i].name;
                 displayList[i].price = nextProps.featuredProductsInFull[i].price;
             }
