@@ -13,8 +13,7 @@
 The template is currently in use with 'Charm Accessories'.
 
 ### Design
-The website is designed to be used by small businesses. The Paypal interface ensures that no payment data is managed by the 
-website. Furthermore, no customer details are stored on-line. 
+The website is designed to be used by small businesses. No payment data is managed by the website and no customer details are stored on-line. 
 
 A content management dashboard is provided for the uploading, editing and
 removal of stock. The dashboard also allows for the editing and management of item categories and for the selection of the 
