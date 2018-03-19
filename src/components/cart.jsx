@@ -20,7 +20,7 @@ class PaymentBtn extends React.Component {
                 label: 'checkout'
             },
             client: {
-                sandbox:    'xxxxxx',
+                sandbox:    'XXXXXX',
                 production: '<insert production client id>'
             },
             commit: true

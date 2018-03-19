@@ -130,7 +130,7 @@
 /* <--- RESPONSIVE NAV MENU ---> */
 @media screen and (min-width: 770px) {
     .shop {
-        margin-top: 25px;//75px;
+        margin-top: 25px;/*75px;*/
     }
     .shop-nav-filter-container {
         width: 170px;

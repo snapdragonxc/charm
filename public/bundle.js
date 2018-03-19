@@ -29688,7 +29688,7 @@ var PaymentBtn = function (_React$Component) {
                 label: 'checkout'
             },
             client: {
-                sandbox: 'AeE0nt0OqqRZ5-GUeNju35QHkNzj3S3isMQbh1LyfJobTJ-8e0ot-ERNKzpsPL5ZARLLYWR-_O0RwF4T',
+                sandbox: 'XXXXXX',
                 production: '<insert production client id>'
             },
             commit: true
