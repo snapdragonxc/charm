@@ -6,6 +6,8 @@ var sessionCheck = require('./sessionCheck');
 // <--- IMAGE HANDLING --->
 var fs = require('fs');
 var multer = require('multer'); 
+var im = require('imagemagick');
+
 var Storage = multer.diskStorage({
     destination: function(req, file, callback) {
         callback(null, "./public/images/products");
@@ -33,25 +35,41 @@ module.exports = function (router) {
             console.log(req.body);
             if (err) {
                 return res.send("image upload err:", err);
-            }
+            }            
             if(req.files[0] != undefined){
                 img = req.files[0].filename;
             }
-            var newProduct = new Product({
-                name: req.body.name,
-                description: req.body.description,
-                category: req.body.category,
-                price: req.body.price,
-                saleprice: req.body.saleprice,
-                img: img,
-                inventory: req.body.inventory
+
+            var input = "./public/images/products/" + img;
+
+            var output =  "./public/images/products/" + 
+                    img.substring(0, img.length-4) + '_thb.jpg';
+
+            im.resize({
+                  srcPath: input,
+                  dstPath: output,
+                  width:   256
+                }, function(err, stdout, stderr){
+                    if (err) throw err;
+                    console.log('resized to fit within 256x256px');
+
+                    var newProduct = new Product({
+                        name: req.body.name,
+                        description: req.body.description,
+                        category: req.body.category,
+                        price: req.body.price,
+                        saleprice: req.body.saleprice,
+                        img: img,
+                        inventory: req.body.inventory
+                    });
+                    newProduct.save( function(err, newProduct){
+                        if(err){
+                            return console.log("product save error: ", err);
+                        }
+                        return res.json(newProduct);
+                    })
             });
-            newProduct.save( function(err, newProduct){
-                if(err){
-                    return console.log("product save error: ", err);
-                }
-                return res.json(newProduct);
-            })
+            
         }); 
     });
     // <--- RETRIEVE PRODUCTS --->
@@ -130,10 +148,41 @@ module.exports = function (router) {
             }           
             if(req.body.updateImage === 'true'){
                 // new image, remove existing image
-                fs.unlink('./public/images/products/' + req.body.img, function(err) { 
+                var oldImg = req.body.img;
+                fs.unlink('./public/images/products/' + oldImg, function(err) { 
                     if (err) {
                         return res.send(err);
                     }
+                    // remove thb
+                    var thb = oldImg.substring(0, oldImg.length-4) + '_thb.jpg';
+
+                    fs.unlink('./public/images/products/' + thb, function(err) {
+                        if (err) {
+                            return console.log("file not found");
+                        }              
+                    });                     
+                    // update product
+                    var img = ''
+                    if(req.files[0] != undefined){
+                        img = req.files[0].filename;
+                    }
+                    var input = "./public/images/products/" + img;
+
+                    var output =  "./public/images/products/" + 
+                        img.substring(0, img.length-4) + '_thb.jpg';
+
+                    im.resize({
+                          srcPath: input,
+                          dstPath: output,
+                          width:   256
+                        }, function(err, stdout, stderr){
+                            if (err) {
+
+                                console.log(err)
+                                throw err;
+                            }
+                            console.log('resized to fit within 256x256px');
+                    });
                     update.$set.img = req.files[0].filename;
                     Product.findOneAndUpdate({
                         _id: id
@@ -165,13 +214,21 @@ module.exports = function (router) {
                 return console.log(err);
             }
             Product.remove( { _id: id }, function(err){
-                //
+                // remove main
                 fs.unlink('./public/images/products/' + product.img, function(err) {
                     if (err) {
-                        return res.send("Something went wrong!");
+                        return res.send("error deleting file");
                     }
-                    res.json(product);                
-                });          
+                    // remove thb
+                    var thb = product.img.substring(0, product.img.length-4) + '_thb.jpg';
+
+                    fs.unlink('./public/images/products/' + thb, function(err) {
+                        if (err) {
+                            return res.send("error deleting file");
+                        }
+                        res.json(product);                
+                    }); 
+                 });       
             });
         });       
     });

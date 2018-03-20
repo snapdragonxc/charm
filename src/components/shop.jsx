@@ -142,7 +142,7 @@ class Shop extends Component {
                     <div key={ index } >
                         <li className="sm-col-span-9 lg-col-span-4 shop-products-product"> 
                             <div onClick={ (event) => that.detailOnClick(event, item._id, item.inventory ) }>
-                                <img src={ imgFolder + item.img }/>
+                                <img src={ imgFolder + item.img.substring(0, item.img.length-4) + '_thb.jpg' }/>
                             </div>
                             <h3>{ item.name }</h3>
                             { ( item.inventory === 0 )? 
@@ -157,7 +157,7 @@ class Shop extends Component {
                 return( 
                     <li key={ index } className="sm-col-span-9 lg-col-span-4 shop-products-product"> 
                         <div onClick={ (event) => that.detailOnClick(event, item._id, item.inventory ) }>
-                            <img src={ imgFolder + item.img }/>
+                            <img src={ imgFolder + item.img.substring(0, item.img.length-4) + '_thb.jpg' }/>
                         </div>
                          <h3>{ item.name }</h3>
                         { ( item.inventory === 0 )? 

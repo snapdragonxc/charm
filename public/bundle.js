@@ -29176,7 +29176,7 @@ var Shop = function (_Component) {
                                 { onClick: function onClick(event) {
                                         return that.detailOnClick(event, item._id, item.inventory);
                                     } },
-                                _react2.default.createElement('img', { src: imgFolder + item.img })
+                                _react2.default.createElement('img', { src: imgFolder + item.img.substring(0, item.img.length - 4) + '_thb.jpg' })
                             ),
                             _react2.default.createElement(
                                 'h3',
@@ -29214,7 +29214,7 @@ var Shop = function (_Component) {
                             { onClick: function onClick(event) {
                                     return that.detailOnClick(event, item._id, item.inventory);
                                 } },
-                            _react2.default.createElement('img', { src: imgFolder + item.img })
+                            _react2.default.createElement('img', { src: imgFolder + item.img.substring(0, item.img.length - 4) + '_thb.jpg' })
                         ),
                         _react2.default.createElement(
                             'h3',
