@@ -14,7 +14,7 @@ class PaymentBtn extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            env: 'sandbox',
+            env: 'sandbox', //'production',//  
             locale: 'en_AU',
             style: {
                 size: 'responsive',

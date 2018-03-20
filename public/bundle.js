@@ -29683,7 +29683,7 @@ var PaymentBtn = function (_React$Component) {
         var _this = _possibleConstructorReturn(this, (PaymentBtn.__proto__ || Object.getPrototypeOf(PaymentBtn)).call(this, props));
 
         _this.state = {
-            env: 'sandbox',
+            env: 'sandbox', //'production',//  
             locale: 'en_AU',
             style: {
                 size: 'responsive',
@@ -30085,8 +30085,8 @@ exports.default = (0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(
 
 
 module.exports = {
-    paypalSandboxID: 'James',
-    paypalProductionID: 'Bond'
+    paypalSandboxID: 'AR3bJEgrK0i1vom6omuIm3ZqdwqFdCrFVKhzkIT07AjHRPxH3YRwXYTOMUrhVAMR8nhpTpBl3tDJwGrR',
+    paypalProductionID: 'AaF7bK7d7aNnz2nL8fBfRajyLatSp1pGMVvytsuVP9p359YqFvZyXOCzHFp-jySAECRO2kwvRUNY-0d7'
 };
 
 /***/ }),
