@@ -5119,39 +5119,39 @@ var _cart = __webpack_require__(164);
 
 var _cart2 = _interopRequireDefault(_cart);
 
-var _detail = __webpack_require__(165);
+var _detail = __webpack_require__(166);
 
 var _detail2 = _interopRequireDefault(_detail);
 
-var _signin = __webpack_require__(166);
+var _signin = __webpack_require__(167);
 
 var _signin2 = _interopRequireDefault(_signin);
 
-var _products = __webpack_require__(167);
+var _products = __webpack_require__(168);
 
 var _products2 = _interopRequireDefault(_products);
 
-var _add = __webpack_require__(168);
+var _add = __webpack_require__(169);
 
 var _add2 = _interopRequireDefault(_add);
 
-var _edit = __webpack_require__(169);
+var _edit = __webpack_require__(170);
 
 var _edit2 = _interopRequireDefault(_edit);
 
-var _categories = __webpack_require__(170);
+var _categories = __webpack_require__(171);
 
 var _categories2 = _interopRequireDefault(_categories);
 
-var _addCategory = __webpack_require__(171);
+var _addCategory = __webpack_require__(172);
 
 var _addCategory2 = _interopRequireDefault(_addCategory);
 
-var _editCategory = __webpack_require__(172);
+var _editCategory = __webpack_require__(173);
 
 var _editCategory2 = _interopRequireDefault(_editCategory);
 
-var _featured = __webpack_require__(173);
+var _featured = __webpack_require__(174);
 
 var _featured2 = _interopRequireDefault(_featured);
 
@@ -29657,6 +29657,10 @@ var _spinner = __webpack_require__(66);
 
 var _spinner2 = _interopRequireDefault(_spinner);
 
+var _clientConfig = __webpack_require__(165);
+
+var _clientConfig2 = _interopRequireDefault(_clientConfig);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
@@ -29667,6 +29671,7 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
+console.log(_clientConfig2.default);
 /* Paypal start */
 var PayPalButton = paypal.Button.driver('react', { React: _react2.default, ReactDOM: _reactDom2.default });
 
@@ -30080,6 +30085,18 @@ exports.default = (0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(
 "use strict";
 
 
+module.exports = {
+    paypalSandboxID: 'James',
+    paypalProductionID: 'Bond'
+};
+
+/***/ }),
+/* 166 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
 Object.defineProperty(exports, "__esModule", {
     value: true
 });
@@ -30415,7 +30432,7 @@ function mapStateToProps(state) {
 exports.default = (0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(Detail);
 
 /***/ }),
-/* 166 */
+/* 167 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -30557,7 +30574,7 @@ function mapStateToProps(state) {
 exports.default = (0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(Signin);
 
 /***/ }),
-/* 167 */
+/* 168 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -30934,7 +30951,7 @@ function mapStateToProps(state) {
 exports.default = (0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(Products);
 
 /***/ }),
-/* 168 */
+/* 169 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -31377,7 +31394,7 @@ exports.default = (0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(
 /*<img src={ this.imgFolder + this.props.imageUrl } alt="" width='385' height='385'/>*/
 
 /***/ }),
-/* 169 */
+/* 170 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -31831,7 +31848,7 @@ function mapStateToProps(state) {
 exports.default = (0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(Edit);
 
 /***/ }),
-/* 170 */
+/* 171 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -32046,7 +32063,7 @@ function mapStateToProps(state) {
 exports.default = (0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(Categories);
 
 /***/ }),
-/* 171 */
+/* 172 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -32217,7 +32234,7 @@ function mapStateToProps(state) {
 exports.default = (0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(AddCategory);
 
 /***/ }),
-/* 172 */
+/* 173 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -32416,7 +32433,7 @@ function mapStateToProps(state) {
 exports.default = (0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(EditCategory);
 
 /***/ }),
-/* 173 */
+/* 174 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -32446,7 +32463,7 @@ var _history2 = _interopRequireDefault(_history);
 
 var _reactRouterDom = __webpack_require__(4);
 
-var _select = __webpack_require__(174);
+var _select = __webpack_require__(175);
 
 var _select2 = _interopRequireDefault(_select);
 
@@ -32641,7 +32658,7 @@ function mapStateToProps(state) {
 exports.default = (0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(Featured);
 
 /***/ }),
-/* 174 */
+/* 175 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";

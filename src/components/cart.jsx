@@ -5,6 +5,9 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { updateCart, getCart, deleteCartItem } from '../actions/cartActions.jsx';
 import Spinner from './common/spinner.jsx';
+
+import clientConfig from '../clientConfig.jsx';
+
 /* Paypal start */
 let PayPalButton = paypal.Button.driver('react', { React, ReactDOM });
 class PaymentBtn extends React.Component {
@@ -20,8 +23,8 @@ class PaymentBtn extends React.Component {
                 label: 'checkout'
             },
             client: {
-                sandbox:    'XXXXXX',
-                production: '<insert production client id>'
+                sandbox:    clientConfig.paypalSandboxID,
+                production: clientConfig.paypalProductionID
             },
             commit: true
         };
