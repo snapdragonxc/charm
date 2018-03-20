@@ -29671,7 +29671,6 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-console.log(_clientConfig2.default);
 /* Paypal start */
 var PayPalButton = paypal.Button.driver('react', { React: _react2.default, ReactDOM: _reactDom2.default });
 
@@ -29693,8 +29692,8 @@ var PaymentBtn = function (_React$Component) {
                 label: 'checkout'
             },
             client: {
-                sandbox: 'XXXXXX',
-                production: '<insert production client id>'
+                sandbox: _clientConfig2.default.paypalSandboxID,
+                production: _clientConfig2.default.paypalProductionID
             },
             commit: true
         };
