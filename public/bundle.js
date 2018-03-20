@@ -29079,7 +29079,7 @@ var Shop = function (_Component) {
         key: 'detailOnClick',
         value: function detailOnClick(event, _id, inventory) {
             event.preventDefault();
-            console.log(inventory);
+            // console.log(inventory)
             if (inventory === 0) {
                 return;
             }
